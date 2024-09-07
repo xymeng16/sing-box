@@ -1,25 +1,25 @@
 #!/bin/bash
 
-TOOLCHAIN=$OHOS_NDK_HOME
-CC="$TOOLCHAIN/bin/clang"
-CXX="$TOOLCHAIN/bin/clang++"
-LD="$TOOLCHAIN/bin/clang"
-AR="$TOOLCHAIN/bin/llvm-ar"
-GOASM="$TOOLCHAIN/bin/llvm-as"
+export OHGO="/Users/xiangyi/code/hmos/golang/go/bin/go"
 
-GOOS="android"
-GOARCH="arm64"
-GOARM=""
-CGO_ENABLED="1"
-CGO_CXXFLAGS=""
+export TOOLCHAIN=$OHOS_NDK_HOME/native/llvm
+export CC="$TOOLCHAIN/bin/clang"
+export CXX="$TOOLCHAIN/bin/clang++"
+export LD="$TOOLCHAIN/bin/clang"
+export AR="$TOOLCHAIN/bin/llvm-ar"
+export GOASM="$TOOLCHAIN/bin/llvm-as"
+export GOOS="android"
+export GOARCH="arm64"
+export GOARM=""
+export CGO_ENABLED="1"
+export CGO_CXXFLAGS=""
+export CGO_CFLAGS="-Wno-error --target=aarch64-linux-ohos $BASE_FLAGS"
+export CGO_LDFLAGS="-extld=$LD --sysroot=$OHOS_NDK_HOME/native/sysroot --target=aarch64-linux-ohos"
 
-CGO_CFLAGS="-Wno-error --target=aarch64-linux-ohos $BASE_FLAGS"
-CGO_LDFLAGS="-extld=$LD --sysroot=C:/ohos_sdk/native/sysroot --target=aarch64-linux-ohos"
-
-TARGET_DIR="aarch64-linux-ohos"
-outputFile="build/$TARGET_DIR/libsb.so"
+export TARGET_DIR="aarch64-linux-ohos"
+export OUTPUT="build/$TARGET_DIR/libsb.so"
 # compress so
 # -trimpath -ldflags="-s -w"
-go env
+$OHGO env
 read -p "Press enter to continue"
-go build -buildmode c-shared -v -x -o outputFile ./cmd/sing-box
+$OHGO build -buildmode c-shared -v -x -o $OUTPUT ./cmd/sing-box
