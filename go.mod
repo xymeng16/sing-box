@@ -42,6 +42,7 @@ require (
 	github.com/sagernet/ws v0.0.0-20231204124109-acfe8907c854
 	github.com/spf13/cobra v1.8.0
 	github.com/stretchr/testify v1.9.0
+	github.com/xymeng16/ohos-go v0.0.0-00010101000000-000000000000
 	go.uber.org/zap v1.27.0
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba
 	golang.org/x/crypto v0.25.0
@@ -53,6 +54,8 @@ require (
 	google.golang.org/protobuf v1.33.0
 	howett.net/plist v1.0.1
 )
+
+replace github.com/xymeng16/ohos-go => ../ohos-go
 
 //replace github.com/sagernet/sing => ../sing
 
